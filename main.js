@@ -12,12 +12,13 @@ function ingresar_producto(form_data) {
     datos[item.name] = item.value;
   });
 
-  lista_productos.push(datos)
+  lista_productos.push(datos);
   localStorage.setItem('producto', JSON.stringify(lista_productos));
+  form_data.reset();
 }
 
 // muestra productos html
-function imprimir_productos() {
+const imprimir_productos = () => {
   const imprimir = lista_productos.map(item => {
     return `
       <div class="card__producto">
