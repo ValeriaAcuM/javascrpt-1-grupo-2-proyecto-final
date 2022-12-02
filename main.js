@@ -21,43 +21,41 @@ function ingresar_producto(form_data) {
 const imprimir_productos = () => {
   const imprimir = lista_productos.map((item) => {
     return `
-      <div class="card__producto">
-        <ol>
-        <li><h2>Nombre producto: ${item.nombre}</h2></li>
-        <li><p>Precio: ${item.precio}</p></li>
-        <li><p>Descripción: ${item.descripcion}</p></li>
-        <li><p>Categoría: ${item.categoria}</p></li>
-        <li><p>Cantidad: ${item.cantidad}</p></li>
-        </ol>
+      <li class="card__producto">
+        <div>
+          <h2>Nombre producto: ${item.nombre}</h2>
+          <p>Precio: ${item.precio}</p>
+          <p>Descripción: ${item.descripcion}</p>
+          <p>Categoría: ${item.categoria}</p>
+          <p>Cantidad: ${item.cantidad}</p>
+        </div>
         <button id=${item.id}>eliminar</button>
-      </div>
+      </li>
     `;
   });
-  
- document.querySelector(".container__productos").innerHTML = imprimir.join("");
-  
 
- // creo una funcion que me permita verificar la entrada del boton
-
- function verificar() {
-    lista_productos.forEach((i) =>
-      document.getElementById(i.id).addEventListener("click", () => {
-         lista_productos.forEach(function (id, index, object) {
-            if (id.id == i.id) {
-              object.splice(index, 1);
-              localStorage.setItem("producto", JSON.stringify(lista_productos));
-              lista_productos = JSON.parse(localStorage.getItem("producto")) || [];
-              imprimir_productos();
-            }
-          });
-        }
-      )
-    );
-  }
+  document.querySelector(".container__productos").innerHTML = imprimir.join("");
   verificar();
-
-};
+}
 imprimir_productos();
+
+
+// creo una funcion que me permita verificar la entrada del boton
+function verificar() {
+  lista_productos.forEach((i) =>
+    document.getElementById(i.id).addEventListener("click", () => {
+      lista_productos.forEach(function (id, index, object) {
+        if (id.id === i.id) {
+          object.splice(index, 1);
+          localStorage.setItem("producto", JSON.stringify(lista_productos));
+          lista_productos = JSON.parse(localStorage.getItem("producto")) || [];
+          imprimir_productos();
+        }
+      });
+    })
+  );
+}
+
 
 // llama a las funnciones de ingresar y imprimir
 formulario.addEventListener("submit", (e) => {
