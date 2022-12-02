@@ -1,0 +1,24 @@
+body {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+}
+
+.container {
+  max-width: 1170px;
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  place-content: center;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+#formulario {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+}
