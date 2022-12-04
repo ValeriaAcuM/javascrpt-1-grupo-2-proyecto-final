@@ -2,8 +2,8 @@ const formulario = document.getElementById("formulario");
 
 let lista_productos = JSON.parse(localStorage.getItem("producto")) || [];
 
-// Esta funcion ingresa productos
-function ingresar_producto(form_data) {
+// ingresa productos
+const ingresar_producto = (form_data) => {
   const datos_campos = [...form_data];
   const datos = {};
 
@@ -14,7 +14,18 @@ function ingresar_producto(form_data) {
 
   lista_productos.push(datos);
   localStorage.setItem("producto", JSON.stringify(lista_productos));
-  form_data.reset();
+  form_data.reset(); 
+}
+
+// validar los productos que se repiten
+const validar_repetido = (target) => {
+  const nombre_producto = document.getElementById('nombre').value
+  const resultado_busqueda = lista_productos.find(item => item.nombre.toLowerCase() === nombre_producto.toLowerCase())
+
+  if(!resultado_busqueda) {
+    return ingresar_producto(target);
+  } 
+  return alert('Se encuentra un producto repetido, debe ingresar uno diferente!');
 }
 
 // muestra productos html
@@ -39,28 +50,30 @@ const imprimir_productos = () => {
 }
 imprimir_productos();
 
-
 // creo una funcion que me permita verificar la entrada del boton
 function verificar() {
   lista_productos.forEach((i) =>
+
     document.getElementById(i.id).addEventListener("click", () => {
       lista_productos.forEach(function (id, index, object) {
+
         if (id.id === i.id) {
           object.splice(index, 1);
           localStorage.setItem("producto", JSON.stringify(lista_productos));
           lista_productos = JSON.parse(localStorage.getItem("producto")) || [];
           imprimir_productos();
         }
+
       });
     })
+
   );
 }
-
 
 // llama a las funnciones de ingresar y imprimir
 formulario.addEventListener("submit", (e) => {
   e.preventDefault();
-  ingresar_producto(e.target);
+  validar_repetido(e.target);
   imprimir_productos();
 });
 
