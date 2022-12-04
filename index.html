@@ -14,31 +14,36 @@
     <form action="" id="formulario">
       <div>
         <label for="nombre"></label>
-        <input type="text" name="nombre"  placeholder="Nombre Producto" id="nombre" required>
+        <input type="text" name="nombre"¬ø placeholder="Nombre Producto" id="nombre" required>
       </div>
       <div>
         <label for="precio"></label>
-        <input type="number" name="precio"  placeholder="Precio" id="precio" required>
+        <input type="number" name="precio" placeholder="Precio" id="precio" required>
       </div>
       <div>
         <label for="descripcion"></label>
-        <input type="text" name="descripcion"  placeholder="Descripción" id="descripcion" required>
+        <input type="text" name="descripcion" placeholder="Descripción" id="descripcion" required>
       </div>
       <div>
         <label for="categoria"></label>
-        <input type="text" name="categoria"  placeholder="Categoría" id="categoria" required>
+        <input type="text" name="categoria" placeholder="Categoría" id="categoria" required>
       </div>
       <div>
         <label for="cantidad"></label>
-        <input type="number" name="cantidad"  placeholder="Cantidad" id="cantidad" required>
+        <input type="number" name="cantidad" placeholder="Cantidad" id="cantidad" required>
       </div>
-        <button type="submit" id="btn">Agregar</button>
-        <!-- Elimina todos los productos -->
-        <button type="button" id="eliminar">Eliminar Productos</button>
+      <button type="submit" id="btn">Agregar</button>
+      <!-- Elimina todos los productos -->
+      <button type="button" id="eliminar">Eliminar Productos</button>
     </form>
-  
-    <ol class="container__productos"></ol>
+
+
+    <div>
+      <input type="text" name="buscar" id="buscador" placeholder="Buscar Productos">
+      <ol class="container__productos"></ol>
+    </div>
   </div>
 </body>
 <script src="main.js"></script>
+
 </html>

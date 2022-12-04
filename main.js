@@ -1,4 +1,5 @@
 const formulario = document.getElementById("formulario");
+const nombre_producto = document.getElementById('nombre').value;
 
 let lista_productos = JSON.parse(localStorage.getItem("producto")) || [];
 
@@ -14,19 +15,19 @@ const ingresar_producto = (form_data) => {
 
   lista_productos.push(datos);
   localStorage.setItem("producto", JSON.stringify(lista_productos));
-  form_data.reset(); 
+  form_data.reset();
 }
 
 // validar los productos que se repiten
 const validar_repetido = (target) => {
-  const nombre_producto = document.getElementById('nombre').value
   const resultado_busqueda = lista_productos.find(item => item.nombre.toLowerCase() === nombre_producto.toLowerCase())
 
-  if(!resultado_busqueda) {
+  if (!resultado_busqueda) {
     return ingresar_producto(target);
-  } 
+  }
   return alert('Se encuentra un producto repetido, debe ingresar uno diferente!');
 }
+
 
 // muestra productos html
 const imprimir_productos = () => {
@@ -34,7 +35,7 @@ const imprimir_productos = () => {
     return `
       <li class="card__producto">
         <div>
-          <h2>Nombre producto: ${item.nombre}</h2>
+          <h2>Nombre producto: <span class="producto">${item.nombre}</span></h2>
           <p>Precio: ${item.precio} ₡</p>
           <p>Descripción: ${item.descripcion}</p>
           <p>Categoría: ${item.categoria}</p>
@@ -70,7 +71,28 @@ function verificar() {
   );
 }
 
+
+// buscar productos
+document.addEventListener('keyup', e => {
+  if (e.target.matches('#buscador')) {
+
+    document.querySelectorAll('.producto').forEach(producto => {
+      console.log(producto)
+
+      if (producto.textContent.toLocaleLowerCase().includes(e.target.value.toLocaleLowerCase())) {
+        producto.classList.remove('filtrar')
+        imprimir_productos()
+      } else {
+        producto.classList.add('filtrar')
+      }
+
+    })
+  }
+})
+
+
 // llama a las funnciones de ingresar y imprimir
+
 formulario.addEventListener("submit", (e) => {
   e.preventDefault();
   validar_repetido(e.target);
