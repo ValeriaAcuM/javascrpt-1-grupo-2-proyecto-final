@@ -39,7 +39,7 @@ const imprimir_productos = () => {
     return `
       <li class="card__producto">
       <div >
-          <h2>Nombre producto: ${item.nombre}</h2>
+          <h2>${item.nombre}</h2>
           <p>Precio: ${item.precio} ₡</p>
           <p>Descripción: ${item.descripcion}</p>
           <p>Categoría: ${item.categoria}</p>
