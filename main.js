@@ -1,5 +1,4 @@
 const formulario = document.getElementById("formulario");
-const nombre_producto = document.getElementById('nombre').value;
 
 let lista_productos = JSON.parse(localStorage.getItem("producto")) || [];
 
@@ -20,8 +19,13 @@ const ingresar_producto = (form_data) => {
 
 // validar los productos que se repiten
 const validar_repetido = (target) => {
-  const resultado_busqueda = lista_productos.find(item => item.nombre.toLowerCase() === nombre_producto.toLowerCase())
+  const nombre_producto = document.getElementById('nombre').value;
 
+  const resultado_busqueda = lista_productos.find(producto =>
+    producto.nombre.toLowerCase() === nombre_producto.toLowerCase()
+  )
+
+  console.log(resultado_busqueda);
   if (!resultado_busqueda) {
     return ingresar_producto(target);
   }
@@ -34,14 +38,14 @@ const imprimir_productos = () => {
   const imprimir = lista_productos.map((item) => {
     return `
       <li class="card__producto">
-        <div>
-          <h2>Nombre producto: <span class="producto">${item.nombre}</span></h2>
+      <div >
+          <h2>Nombre producto: ${item.nombre}</h2>
           <p>Precio: ${item.precio} ₡</p>
           <p>Descripción: ${item.descripcion}</p>
           <p>Categoría: ${item.categoria}</p>
           <p>Cantidad: ${item.cantidad}</p>
         </div>
-        <button id=${item.id}>eliminar</button>
+        <button id=${item.id}>Eliminar</button>
       </li>
     `;
   });
@@ -76,17 +80,16 @@ function verificar() {
 document.addEventListener('keyup', e => {
   if (e.target.matches('#buscador')) {
 
-    document.querySelectorAll('.producto').forEach(producto => {
-      console.log(producto)
+    document.querySelectorAll('.card__producto').forEach(producto => {
 
       if (producto.textContent.toLocaleLowerCase().includes(e.target.value.toLocaleLowerCase())) {
         producto.classList.remove('filtrar')
-        imprimir_productos()
       } else {
         producto.classList.add('filtrar')
       }
 
     })
+
   }
 })
 
