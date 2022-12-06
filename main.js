@@ -17,19 +17,35 @@ function ingresar_producto(form_data) {
   form_data.reset();
 }
 
+
+// validar los productos que se repiten
+const validar_repetido = (target) => {
+  const nombre_producto = document.getElementById('nombre').value;
+
+  const resultado_busqueda = lista_productos.find(producto =>
+    producto.nombre.toLowerCase() === nombre_producto.toLowerCase()
+  )
+
+  if (!resultado_busqueda) {
+    return ingresar_producto(target);
+  }
+  return alert('¡Error! El producto no se debe ingresar a la lista de productos.');
+};
+
+
 // muestra productos html
 const imprimir_productos = () => {
   const imprimir = lista_productos.map((item) => {
     return `
       <li class="card__producto">
         <div>
-          <h2>Nombre producto: ${item.nombre}</h2>
+          <h2>${item.nombre}</h2>
           <p>Precio: ${item.precio} ₡</p>
           <p>Descripción: ${item.descripcion}</p>
           <p>Categoría: ${item.categoria}</p>
           <p>Cantidad: ${item.cantidad}</p>
         </div>
-        <button id=${item.id}>eliminar</button>
+        <button id=${item.id} class="btn">eliminar</button>
       </li>
     `;
   });
@@ -57,10 +73,26 @@ function verificar() {
 }
 
 
-// llama a las funnciones de ingresar y imprimir
+// buscar productos
+document.getElementById('buscador').addEventListener('keyup', e => {
+  let texto = new RegExp(e.target.value, 'i');
+
+  document.querySelectorAll('.card__producto').forEach(producto => {
+
+    if(texto.test(producto.innerText)){
+      producto.classList.remove('filtrar')
+    } else {
+      producto.classList.add('filtrar')
+    }
+
+  })
+});
+
+
+// llama a las funciones de ingresar y imprimir
 formulario.addEventListener("submit", (e) => {
   e.preventDefault();
-  ingresar_producto(e.target);
+  validar_repetido(e.target);
   imprimir_productos();
 });
 
@@ -70,4 +102,3 @@ document.getElementById("eliminar").addEventListener("click", () => {
   lista_productos = JSON.parse(localStorage.getItem("producto")) || [];
   imprimir_productos();
 });
-

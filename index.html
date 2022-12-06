@@ -9,6 +9,16 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 
+<header>
+  <p>Area Tecnológica</p>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Nosotros</a>
+    <a href="#">Productos</a>
+    <a href="#">Lista Deseos</a>
+  </nav>
+</header>
+
 <body>
   <div class="container">
     <form action="" id="formulario">
@@ -32,13 +42,27 @@
         <label for="cantidad"></label>
         <input type="number" name="cantidad"  placeholder="Cantidad" id="cantidad" required>
       </div>
-        <button type="submit" id="btn">Agregar</button>
+        <button class="btn_agregar" type="submit" id="btn">Agregar</button>
         <!-- Elimina todos los productos -->
-        <button type="button" id="eliminar">Eliminar Productos</button>
+        <button class="btn_eliminar" type="button" id="eliminar">Eliminar Productos</button>
     </form>
   
+  <div>
+    <input class="barra_busqueda" type="search" name="buscar" id="buscador" placeholder="Buscar Productos">
     <ol class="container__productos"></ol>
   </div>
+  </div>
+
+<footer>
+  <p>
+    <span>Encuentra lo último en tecnologia</span>
+    <span>en Área Tecnológica, con más de</span>
+    <span>25 años ofreciendo nuestros servicios</span>
+    <span>¡Gracias por tu visita!</span>
+  </p>
+  <img src="./img/Gestión-Redes-Sociales.png" alt="">
+</footer>
+
 </body>
 <script src="main.js"></script>
 </html>

@@ -22,3 +22,108 @@ body {
   padding: 10px;
   box-sizing: border-box;
 }
+
+.filtrar {
+  display: none; 
+}
+
+header {
+  background-color: darkslategrey;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding: 1px;
+}
+
+header p {
+  color: aliceblue;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+nav {
+  background-color: chartreuse;
+  padding: 5px;
+}
+
+nav a {
+  padding-left: 5%;
+  text-decoration: none;
+  color: black;
+  font-size: 1.3rem;
+}
+
+nav a:first-child {
+  margin-left: 24%;
+}
+
+nav a:last-child {
+  color: mediumblue;
+}
+
+.container__productos {
+  list-style: none;
+  text-align: center;
+  font-size: 18px;
+}
+
+.card__producto {
+  background-color: darkgrey;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.btn {
+  background-color: #59caa8;
+  padding: 5px 20px;
+  border-radius: 10px;
+}
+
+.btn_agregar {
+  background-color: chartreuse;
+  padding: 5px 20px;
+  border-radius: 15px;
+  
+}
+
+.btn_eliminar {
+  background-color: #59caa8;
+  padding: 5px 20px;
+  border-radius: 15px;
+}
+
+.barra_busqueda {
+  padding: 6px 40px;
+  margin-top: 2%;
+  margin-left: 35%;
+}
+
+.container {
+  margin-top: 2%;
+}
+
+.container input {
+  padding: 6px 40px;
+}
+
+footer {
+  background-color: darkslategrey;
+  padding: 5px;
+  margin-left: 5%;
+  margin-right:  5%;
+}
+
+footer p {
+  margin-left: 15%;
+  font-size: 20px;
+  color: aliceblue;
+  margin-bottom: -3%;
+}
+
+footer p span { 
+  display: block;
+}
+
+footer img {
+  margin-left: 65%;
+  margin-top: -5%;
+}
